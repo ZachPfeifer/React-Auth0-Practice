@@ -5,11 +5,14 @@ import { Container } from "reactstrap";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
+
+import { GlobalProvider } from "./context/GlobalState";
+import UserProvider from './context/UserState';
+
 
 // styles
 import "./App.css";
@@ -26,6 +29,8 @@ const App = () => {
   }
 
   return (
+    <UserProvider>
+    <GlobalProvider>
     <Router history={history}>
       <div id="app" className="d-flex flex-column h-100">
         <NavBar />
@@ -35,9 +40,10 @@ const App = () => {
             <PrivateRoute path="/profile" component={Profile} />
           </Switch>
         </Container>
-        <Footer />
       </div>
     </Router>
+    </GlobalProvider>
+    </UserProvider>
   );
 };
 
