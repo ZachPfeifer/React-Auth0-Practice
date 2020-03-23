@@ -100,9 +100,9 @@ h4 {
   margin-left: auto;
 }
 
-.wrapper {
-  margin-top: 35rem;
-}
+/* .wrapper {
+  margin-top: 0rem;
+} */
 
 /* .login-wrapper {
   margin-top: -20rem;
@@ -113,9 +113,9 @@ h4 {
 }
 
 @media(max-width: 766px) {
-  .wrapper {
+  /* .wrapper {
     margin-top: 50rem;
-  }
+  } */
   .login-wrapper {
     margin-top: 0rem;
   }

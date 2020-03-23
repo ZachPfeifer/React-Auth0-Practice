@@ -1,6 +1,5 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { Container } from "reactstrap";
 
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/Loading";
@@ -12,6 +11,8 @@ import history from "./utils/history";
 
 import { GlobalProvider } from "./context/GlobalState";
 import UserProvider from './context/UserState';
+
+import NavContainer from './components/Nav/NavContainer';
 
 
 // styles
@@ -32,14 +33,14 @@ const App = () => {
     <UserProvider>
     <GlobalProvider>
     <Router history={history}>
-      <div id="app" className="d-flex flex-column h-100">
+      <div className="container-fluid">
         <NavBar />
-        <Container className="flex-grow-1 mt-5">
+        <NavContainer />
+
           <Switch>
-            <Route path="/" exact component={Home} />
-            <PrivateRoute path="/profile" component={Profile} />
+            <Route path="/React-Expense-Tracker/" exact component={Home} />
+            <PrivateRoute path="/React-Expense-Tracker/profile" component={Profile} />
           </Switch>
-        </Container>
       </div>
     </Router>
     </GlobalProvider>
