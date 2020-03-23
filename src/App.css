@@ -100,22 +100,22 @@ h4 {
   margin-left: auto;
 }
 
-/* .wrapper {
-  margin-top: 0rem;
-} */
+.wrapper {
+  margin-top: 5rem;
+}
 
-/* .login-wrapper {
+.login-wrapper {
   margin-top: -20rem;
-} */
+}
 
 .confirm-wrapper {
   margin-top: 25rem;
 }
 
 @media(max-width: 766px) {
-  /* .wrapper {
-    margin-top: 50rem;
-  } */
+  .wrapper {
+    margin-top: 5rem;
+  }
   .login-wrapper {
     margin-top: 0rem;
   }

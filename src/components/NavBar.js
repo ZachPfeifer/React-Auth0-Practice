@@ -41,7 +41,7 @@ const NavBar = () => {
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
-                  to="/"
+                  to="/React-Expense-Tracker/"
                   exact
                   activeClassName="router-link-exact-active"
                 >
