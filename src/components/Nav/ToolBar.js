@@ -123,7 +123,7 @@ const ToolBar = (props) => {
                 <NavItem>
                   <FontAwesomeIcon icon="user" className="mr-3" />
                   <RouterNavLink
-                    to="/React-Expense-Tracker//profile"
+                    to="/React-Expense-Tracker/profile"
                     activeClassName="router-link-exact-active"
                   >
                     Profile

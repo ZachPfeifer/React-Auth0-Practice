@@ -8,8 +8,9 @@ import Profile from "./views/Profile";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
 
-import { GlobalProvider } from "./context/GlobalState";
+// import GlobalProvider from "./context/GlobalState";
 import UserProvider from './context/UserState';
+import GlobalProvider from "./context/GlobalState";
 
 import NavContainer from './components/Nav/NavContainer';
 
@@ -30,7 +31,7 @@ const App = () => {
 
   return (
     <UserProvider>
-    <GlobalProvider>
+   <GlobalProvider>
     <Router history={history}>
         <NavContainer />
       <div className="container-fluid">
@@ -40,7 +41,7 @@ const App = () => {
           </Switch>
       </div>
     </Router>
-    </GlobalProvider>
+   </GlobalProvider>
     </UserProvider>
   );
 };
