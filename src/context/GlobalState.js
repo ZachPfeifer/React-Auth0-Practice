@@ -21,7 +21,7 @@ class GlobalProvider extends Component {
 
   getTransactions = async () => {
     try {
-let res =       axios.get('https://zachs-global-server.herokuapp.com/api/v1/transactions')
+       axios.get('https://zachs-global-server.herokuapp.com/api/v1/transactions')
         .then(res => this.setState({
           transactions: res.data.data,
           loading: false
@@ -33,7 +33,7 @@ let res =       axios.get('https://zachs-global-server.herokuapp.com/api/v1/tran
 
   deleteTransaction = async (_id) => {
     try {
-      let res = await axios.delete(`https://zachs-global-server.herokuapp.com/api/v1/transactions/${_id}`)
+       await axios.delete(`https://zachs-global-server.herokuapp.com/api/v1/transactions/${_id}`)
         .then(res => this.setState({
           transactions:  [...this.state.transactions.filter(transactions => transactions._id !== _id)],
           loading: false
@@ -46,7 +46,7 @@ let res =       axios.get('https://zachs-global-server.herokuapp.com/api/v1/tran
 
   addTransaction = async (transaction) => {
     try {
-      let res = await axios.post('https://zachs-global-server.herokuapp.com/api/v1/transactions', transaction)
+       await axios.post('https://zachs-global-server.herokuapp.com/api/v1/transactions', transaction)
       .then(res => this.setState({
         transactions:  [...this.state.transactions, res.data.data],
         loading: false
