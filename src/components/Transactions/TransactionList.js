@@ -16,10 +16,6 @@ const TransactionList = (props) => {
       return <Transaction
       transaction={transaction} 
       key={transaction._id}
-        // key={transaction._id}
-        // id={transaction._id}
-        // text={transaction.text}
-        // amount={transaction.amount}
         />
   })
 
@@ -28,13 +24,10 @@ const TransactionList = (props) => {
     <>
       <h3>History</h3>
       <SearchBox handleInput={handleInput} />
-<hr/>
+      <hr/>
       <div className="list-container">
         <ul className="list">
           {transactions}
-          {/* {transactions.map(transaction => ((
-            <Transaction transaction={transaction} key={transaction._id} />
-          )))} */}
         </ul>
       </div>
     </>

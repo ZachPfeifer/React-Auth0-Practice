@@ -21,8 +21,7 @@ export default function TransactionsContainer() {
   })
   
   
-  // console.log(searchItems);
-  console.log(`transactions ${transactions}`, `searchItems ${searchItems}`);
+  // console.log(`transactions ${transactions}`, `searchItems ${searchItems}` `Chips: ${chips}`);
   
   return (
    <>

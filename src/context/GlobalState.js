@@ -1,5 +1,7 @@
 
 import React, { Component, createContext } from 'react'
+// import Chips, { Chip } from 'react-chips'
+
 import axios from 'axios'
 
 // @ts-ignore
@@ -12,6 +14,8 @@ class GlobalProvider extends Component {
     transactions: [],
     error: null,
     loading: true,
+
+    chips: [],
     searchItems: []
   }
   
@@ -19,6 +23,7 @@ class GlobalProvider extends Component {
     this.getTransactions()
   }
 
+  // SECTION API CALLS
   getTransactions = async () => {
     try {
        axios.get('https://zachs-global-server.herokuapp.com/api/v1/transactions')
@@ -67,11 +72,21 @@ class GlobalProvider extends Component {
   handleInput = (e) => {
     e.preventDefault();
     this.setState({ 
-      searchItems: e.target.value 
+       searchItems: e.target.value,
+       chips: e.target.value
     })
     console.log(e.target.value, this.state.searchItems);
-    
   }
+  //NOTE Handle for Chips
+   handleDeleteChip = () => {
+    console.info('You clicked the delete icon.');
+  };
+  handleClickChip = () => {
+    console.info('You clicked the Chip.');
+  };
+  // onChange = chips => {
+  //   this.setState({ chips });
+  // }
 
   render() {
     return (
@@ -82,12 +97,17 @@ class GlobalProvider extends Component {
           error: this.state.error,
           loading: this.state.loading,
           searchItems: this.state.searchItems,
+          chips:this.state.chips,
           //NOTE API CALLS
           getTransactions: this.getTransactions,
           deleteTransaction: this.deleteTransaction,
           addTransaction: this.addTransaction,
           //NOTE HANDLERS
           handleInput: this.handleInput,
+          handleDeleteChip: this.handleDeleteChip,
+          handleClickChip: this.handleClickChip,
+
+          // onChange: this.onChange
 
         }}>
         {this.props.children}
