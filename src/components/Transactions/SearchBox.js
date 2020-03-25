@@ -1,14 +1,13 @@
 import React from 'react'
 import { FiSearch } from "react-icons/fi";
-// import Chip  from './Chips/Chip';
-import ChipUI  from './Chips/ChipUI';
+import ChipList  from './Chips/ChipList';
 
 
 export default function SearchBox(props) {
   return (
     <>
 
-    <form className="row">
+    <form onSubmit={props.handleInput} className="row" >
       <label htmlFor="search-input" className="col-10">
         <span className="ml-3 mb-2">
           Search Transactions:
@@ -31,12 +30,11 @@ export default function SearchBox(props) {
             </div>
           </ div>
          {/* FIXME CONSTRUCTION CHIPs */}
-         {/* <Chip/> */}
-         <ChipUI/>
+         <ChipList/>
         </span>
       <div className="form-check form-check-inline d-flex align-items-baseline">
         <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
-        <label className="form-check-label" for="inlineCheckbox1">Negitive Amount</label>
+        <label className="form-check-label" htmlFor="inlineCheckbox1">Negitive Amount</label>
         </div>
         <div className="form-check form-check-inline">
         <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>

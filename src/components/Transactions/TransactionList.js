@@ -5,7 +5,7 @@ import SearchBox from './SearchBox'
 
 
 const TransactionList = (props) => {
-  const { getTransactions, handleInput} = useContext(GlobalContext)
+  const { getTransactions, handleInput, onChange} = useContext(GlobalContext)
  
  
   useEffect(() => {
@@ -23,7 +23,7 @@ const TransactionList = (props) => {
   return (
     <>
       <h3>History</h3>
-      <SearchBox handleInput={handleInput} />
+      <SearchBox handleInput={handleInput} onChange={onChange} />
       <hr/>
       <div className="list-container">
         <ul className="list">

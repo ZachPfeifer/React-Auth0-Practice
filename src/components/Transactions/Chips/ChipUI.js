@@ -1,5 +1,4 @@
-import React,{useContext} from 'react';
-import { GlobalContext } from '../../../context/GlobalState'
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import { GiReceiveMoney } from "react-icons/gi";
@@ -16,25 +15,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SmallOutlinedChips() {
-    const { handleDeleteChip, handleClickChip, chips} = useContext(GlobalContext)
+export default function SmallOutlinedChips(props) {
 
 
   const classes = useStyles();
 
- 
 
   return (
     <div className={classes.root}>
-      <Chip variant="outlined" size="small" label="Chips"/>
-      
       <Chip
         icon={<GiReceiveMoney />}
         variant="outlined"
         size="small"
-        label={chips}
-        onClick={handleClickChip}
-        onDelete={handleDeleteChip}
+        label={props.chip}
+        onClick={props.handleClickChip}
+        onDelete={props.handleDeleteChip}
         deleteIcon={<TiDeleteOutline/>}
       />
      

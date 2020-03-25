@@ -21,6 +21,9 @@ class GlobalProvider extends Component {
   
   componentDidMount() {
     this.getTransactions()
+    // const chips = localStorage.getItem('Chips') === 'true';
+    // this.setState({ chips });
+
   }
 
   // SECTION API CALLS
@@ -71,22 +74,29 @@ class GlobalProvider extends Component {
   //SECTION Handle for search Input
   handleInput = (e) => {
     e.preventDefault();
-    this.setState({ 
-       searchItems: e.target.value,
-       chips: e.target.value
-    })
-    console.log(e.target.value, this.state.searchItems);
+    const {searchItems, chips, transactions} = this.state
+
+    if(searchItems === null){
+      return transactions
+    }else{ 
+      // localStorage.setItem('Chips', chips);
+      this.setState({ 
+        searchItems: [searchItems + e.target.value],
+        chips: [chips + e.target.value]
+      })
+      console.log(e.target.value, searchItems, chips);
+    }
   }
   //NOTE Handle for Chips
-   handleDeleteChip = () => {
+   handleDeleteChip = (i) => {
     console.info('You clicked the delete icon.');
   };
   handleClickChip = () => {
     console.info('You clicked the Chip.');
   };
-  // onChange = chips => {
-  //   this.setState({ chips });
-  // }
+  onChange = chips => {
+    this.setState({ chips });
+  }
 
   render() {
     return (
@@ -97,7 +107,7 @@ class GlobalProvider extends Component {
           error: this.state.error,
           loading: this.state.loading,
           searchItems: this.state.searchItems,
-          chips:this.state.chips,
+          chips: this.state.chips,
           //NOTE API CALLS
           getTransactions: this.getTransactions,
           deleteTransaction: this.deleteTransaction,
@@ -107,7 +117,7 @@ class GlobalProvider extends Component {
           handleDeleteChip: this.handleDeleteChip,
           handleClickChip: this.handleClickChip,
 
-          // onChange: this.onChange
+          onChange: this.onChange
 
         }}>
         {this.props.children}
