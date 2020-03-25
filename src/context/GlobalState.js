@@ -66,7 +66,11 @@ class GlobalProvider extends Component {
   //SECTION Handle for search Input
   handleInput = (e) => {
     e.preventDefault();
-    this.setState({ searchItems: e.target.value })
+    this.setState({ 
+      searchItems: e.target.value 
+    })
+    console.log(e.target.value, this.state.searchItems);
+    
   }
 
   render() {
@@ -77,6 +81,7 @@ class GlobalProvider extends Component {
           transactions: this.state.transactions,
           error: this.state.error,
           loading: this.state.loading,
+          searchItems: this.state.searchItems,
           //NOTE API CALLS
           getTransactions: this.getTransactions,
           deleteTransaction: this.deleteTransaction,

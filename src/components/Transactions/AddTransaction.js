@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalState'
+import {Capitalize} from './../Utility/capitalize'
 
 const AddTransaction = () => {
   //SECTION Temp Hooks(useState)
@@ -11,7 +12,7 @@ const AddTransaction = () => {
   const onSubmit = e => {
     e.preventDefault()
     const newTransaction = {
-      text,
+      text: Capitalize(text),
       //NOTE +amount turns string amount into number ammount
       amount: +amount,
     }
