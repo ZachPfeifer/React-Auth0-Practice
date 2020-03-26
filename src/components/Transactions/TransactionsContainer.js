@@ -26,7 +26,7 @@ export default function TransactionsContainer() {
    <>
     <Balance />
     <IncomeExpenses />
-    <TransactionList filterItems={filterItems} />
+    <TransactionList filterItems={filterItems || transactions} />
     <AddTransaction />
    
    </>

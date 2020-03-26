@@ -15,14 +15,14 @@ class GlobalProvider extends Component {
     error: null,
     loading: true,
 
-    chips: [],
+    chips: true,
+    Pinned: [],
     searchItems: []
   }
   
   componentDidMount() {
     this.getTransactions()
-    // const chips = localStorage.getItem('Chips') === 'true';
-    // this.setState({ chips });
+
 
   }
 
@@ -65,60 +65,90 @@ class GlobalProvider extends Component {
   }
 
 
+  //ANCHOR Maybe API call that determines whether items is chipped(pinned) REFERENCE Marked from Kanban 
+  // WOULD NEED to add chipped to object on server end // If added could have a reactive graph
+
 
  
+  
+  
   //SECTION Search Filter 
-
-
-
+  
   //SECTION Handle for search Input
   handleInput = (e) => {
     e.preventDefault();
-    const {searchItems, chips, transactions} = this.state
+    let {searchItems, chips, transactions} = this.state
+    if( e.target.value === undefined ){
+  this.setState({ 
+    searchItems: transactions,
+  })    
+}else{ 
+  // debugger
+  // localStorage.setItem('Chips', chips);
+  this.setState({ 
+    //NOTE ...searchItems shows filterItem.map is working 
+    searchItems: [e.target.value],
+    // pinned: [this.state.pinned + [e.target.value]],
+    chips: true
+  })
+}
+console.log(`Target: ${e.target.value}, SearchItems: ${searchItems.id}, Chips: ${chips}`);
+}
 
-    if(searchItems === null){
-      return transactions
-    }else{ 
-      // localStorage.setItem('Chips', chips);
-      this.setState({ 
-        searchItems: [searchItems + e.target.value],
-        chips: [chips + e.target.value]
+//NOTE Handles for Chips
+handleDeleteChip = (index) => {
+    this.setState({
+      chips: false,
+      searchItems: this.state.searchItems.map(item=>{
+      if(item.index === index){
+          item = !item
+      }
+       return item
       })
-      console.log(e.target.value, searchItems, chips);
-    }
-  }
-  //NOTE Handle for Chips
-   handleDeleteChip = (i) => {
-    console.info('You clicked the delete icon.');
-  };
+    })
+}
+
   handleClickChip = () => {
+    //NOTE Maybe use to pin items to search  
+    //Need to set destructor items from state
+    //Need to set Pinned item to start perimently (maybe prevState)
+    //need to handle changing filterItems to include state of pinned items 
+
     console.info('You clicked the Chip.');
+
   };
+
+
+  //FIXME TRIAL HANDLERS
+  hideChip=()=>{
+    this.setState({ chips: false });
+  }
   onChange = chips => {
     this.setState({ chips });
   }
-
+  
   render() {
     return (
       <GlobalContext.Provider
-        value={{
-          //NOTE STATE
-          transactions: this.state.transactions,
-          error: this.state.error,
-          loading: this.state.loading,
-          searchItems: this.state.searchItems,
-          chips: this.state.chips,
-          //NOTE API CALLS
-          getTransactions: this.getTransactions,
-          deleteTransaction: this.deleteTransaction,
-          addTransaction: this.addTransaction,
-          //NOTE HANDLERS
-          handleInput: this.handleInput,
-          handleDeleteChip: this.handleDeleteChip,
-          handleClickChip: this.handleClickChip,
-
+      value={{
+        //NOTE STATE
+        transactions: this.state.transactions,
+        error: this.state.error,
+        loading: this.state.loading,
+        searchItems: this.state.searchItems,
+        chips: this.state.chips,
+        //NOTE API CALLS
+        getTransactions: this.getTransactions,
+        deleteTransaction: this.deleteTransaction,
+        addTransaction: this.addTransaction,
+        //NOTE HANDLERS
+        handleInput: this.handleInput,
+        handleDeleteChip: this.handleDeleteChip,
+        handleClickChip: this.handleClickChip,
+        
+        //FIXME TRIAL HANDLERS
+          hideChip: this.hideChip,
           onChange: this.onChange
-
         }}>
         {this.props.children}
       </GlobalContext.Provider>

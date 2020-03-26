@@ -22,15 +22,18 @@ export default function SearchBox(props) {
             onChange={props.handleInput}
             />
           <div className="input-group-append">
-            <div
+            <button
               type="submit"
-              className="btn-sm"
+              className="btn-sm btn-search"
               onClick={props.handleInput}
-              disabled><FiSearch/></div>
+              disabled
+              ><FiSearch/></button>
             </div>
           </ div>
          {/* FIXME CONSTRUCTION CHIPs */}
+         <div className="d-flex justify-content-center mt-1">
          <ChipList/>
+         </div>
         </span>
       <div className="form-check form-check-inline d-flex align-items-baseline">
         <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>

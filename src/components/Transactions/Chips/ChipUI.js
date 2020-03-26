@@ -29,7 +29,7 @@ export default function SmallOutlinedChips(props) {
         size="small"
         label={props.chip}
         onClick={props.handleClickChip}
-        onDelete={props.handleDeleteChip}
+        onDelete={props.handleDeleteChip(props.key)}
         deleteIcon={<TiDeleteOutline/>}
       />
      
