@@ -12,6 +12,8 @@ const TransactionList = (props) => {
     getTransactions()// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) 
 
+  // let allItems = props.filterItems + pinned
+
   let transactions = props.filterItems.map((transaction) => {
       return <Transaction
       transaction={transaction} 

@@ -19,19 +19,22 @@ export default function SmallOutlinedChips(props) {
 
 
   const classes = useStyles();
+console.log(props);
 
 
   return (
-    <div className={classes.root}>
-      <Chip
-        icon={<GiReceiveMoney />}
-        variant="outlined"
-        size="small"
-        label={props.chip}
-        onClick={props.handleClickChip}
-        onDelete={props.handleDeleteChip(props.key)}
-        deleteIcon={<TiDeleteOutline/>}
-      />
+    <div className={classes.root}> 
+        <Chip
+           icon={<GiReceiveMoney />}
+           variant="outlined"
+           key={props.index}
+           id={props.index}
+           size="small"
+           label={props.chip || 'Search Item to Pin'}
+           onClick={props.handleClickChip}
+          //  onDelete={props.handleDeleteChip(props.index)}
+           deleteIcon={<TiDeleteOutline/>}
+           />
      
     </div>
   );

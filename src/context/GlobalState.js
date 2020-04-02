@@ -15,9 +15,10 @@ class GlobalProvider extends Component {
     error: null,
     loading: true,
 
-    chips: true,
-    Pinned: [],
+    chips: true, //displayAsChips Maybe not a bool
+    pinned: [],
     searchItems: []
+    //Had Search turn that Bound
   }
   
   componentDidMount() {
@@ -75,20 +76,21 @@ class GlobalProvider extends Component {
   //SECTION Search Filter 
   
   //SECTION Handle for search Input
+//FIXME Streamline search by having onSubmit
+//FIXME Push input to state 
   handleInput = (e) => {
+    debugger
     e.preventDefault();
-    let {searchItems, chips, transactions} = this.state
+    const {searchItems, chips, transactions, pinned} = this.state
     if( e.target.value === undefined ){
   this.setState({ 
     searchItems: transactions,
   })    
 }else{ 
-  // debugger
-  // localStorage.setItem('Chips', chips);
+  debugger
   this.setState({ 
-    //NOTE ...searchItems shows filterItem.map is working 
     searchItems: [e.target.value],
-    // pinned: [this.state.pinned + [e.target.value]],
+    pinned: e.target.value,
     chips: true
   })
 }
@@ -96,25 +98,37 @@ console.log(`Target: ${e.target.value}, SearchItems: ${searchItems.id}, Chips: $
 }
 
 //NOTE Handles for Chips
-handleDeleteChip = (index) => {
+handleDeleteChip = (item) => {
+  const {transactions, pinned, searchItems} = this.state
+  debugger
     this.setState({
       chips: false,
-      searchItems: this.state.searchItems.map(item=>{
-      if(item.index === index){
-          item = !item
+      //NOTE Had searchItems originally
+      pinned: searchItems.map(transaction=>{
+      if(transaction === item){
+        transaction= !transaction
       }
        return item
       })
+      // pinned: searchItems.filter(transaction=> transaction.key!== item.key)
     })
 }
 
   handleClickChip = () => {
-    //NOTE Maybe use to pin items to search  
-    //Need to set destructor items from state
-    //Need to set Pinned item to start perimently (maybe prevState)
-    //need to handle changing filterItems to include state of pinned items 
+    //NOTE Maybe use to pinned items to search  
+    debugger
+    //Need to set destructored items from state
+    //Need to set pinned item to search results/ Transaction History(maybe prevState)
+    //Need to handle changing filterItems to include state of pinned items 
+    //Clear Search input
+    const {searchItems, chips, pinned,} = this.state
+    this.setState({
+      pinned: searchItems.push(pinned),
+      chips: true
+    })
+    console.log(`You clicked the Chip. pinned: ${pinned}, SearchItems: ${searchItems}, Chips: ${chips}`);
 
-    console.info('You clicked the Chip.');
+
 
   };
 
