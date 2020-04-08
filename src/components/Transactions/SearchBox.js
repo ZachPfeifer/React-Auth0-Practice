@@ -6,6 +6,7 @@ import ChipList  from './Chips/ChipList';
 export default function SearchBox(props) {
   return (
     <>
+    {/* NEEDS OnS UMBIT */}
 
     <form onSubmit={props.handleInput} className="row" >
       <label htmlFor="search-input" className="col-10">

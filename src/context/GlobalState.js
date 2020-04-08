@@ -78,14 +78,14 @@ class GlobalProvider extends Component {
   //SECTION Handle for search Input
 //FIXME Streamline search by having onSubmit
 //FIXME Push input to state 
-  handleInput = (e) => {
+ handleInput = (e) => {
     debugger
     e.preventDefault();
     const {searchItems, chips, transactions, pinned} = this.state
     if( e.target.value === undefined ){
   this.setState({ 
     searchItems: transactions,
-  })    
+  })     
 }else{ 
   debugger
   this.setState({ 
